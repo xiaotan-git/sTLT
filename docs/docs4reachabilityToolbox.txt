@@ -1,0 +1,23 @@
+[1] Introduction to Reachability
+Somil Bansal
+https://smlbansal.github.io/Papers/Introduction_to_Reachability_to_Share.pdf
+
+[2] Hamilton-Jacobi_reachability_A_brief_overview_and_recent_advances
+Somil Bansal, Mo Chen, Sylvia Herbert, Claire J. Tomlin
+https://arxiv.org/abs/1709.07523
+
+[3] Intro to Reachability Code
+Sylvia Herbert
+From helperOC Github repo
+https://github.com/HJReachability/helperOC
+
+[4] A Toolbox of Level Set Methods: User Mannual
+Ian Mitchell
+https://www.cs.ubc.ca/~mitchell/ToolboxLS/
+
+Instructions:
+1. First go over [1] and [2] to understand why Reachability problem can be casted as an optimal control problem, and how to write out the corresponding Hamilton-Jacob equation.
+2. Then check [3] and the tutorial in their repo to understand what the parameters/flags mean in th HJB equation.
+3. If you need to solve some PDE that is more complex than what this helperOC provides, check [4] for solutions.
+
+
