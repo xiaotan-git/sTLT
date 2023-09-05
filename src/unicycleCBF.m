@@ -14,6 +14,7 @@ classdef unicycleCBF
         
         % time interval [tb_low, tset_low, tb_upp]
         timeInterval
+        initialTimeInterval
         % grid over states
         grid
         g_with_time
@@ -110,6 +111,7 @@ classdef unicycleCBF
             obj.dataDeriv = dataDeriv;
             obj.grid = grid;
             obj.timeInterval = timeInterval;
+            obj.initialTimeInterval = timeInterval;
             obj.vRange = vRange;
             obj.wMax = wMax;
             
@@ -199,6 +201,10 @@ classdef unicycleCBF
             else
                 tf = false;
             end
+        end
+
+        function obj = resetTimeDomain(obj)
+            obj.timeInterval = obj.initialTimeInterval;
         end
     end
 end

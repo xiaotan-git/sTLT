@@ -1,4 +1,4 @@
-classdef singleIntegratorCBF
+classdef singleIntegratorCBF < handle
     %SINGLEINTEGRATORCBF Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -13,6 +13,7 @@ classdef singleIntegratorCBF
         
         % time interval [tb_low, tset_low, tb_upp]
         timeInterval
+        initialTimeInterval
         % target set when t = tset_low 
         circularCenter
         circularRadius
@@ -44,6 +45,7 @@ classdef singleIntegratorCBF
             
             obj.vMax = vMax;
             obj.timeInterval = timeInterval;
+            obj.initialTimeInterval = timeInterval;
             obj.circularCenter = c;
             obj.circularRadius = r;
         end
@@ -163,6 +165,10 @@ classdef singleIntegratorCBF
             end
 
             
+        end
+
+        function obj = resetTimeDomain(obj)
+            obj.timeInterval = obj.initialTimeInterval;
         end
     end
 end
