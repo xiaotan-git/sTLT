@@ -377,9 +377,14 @@ classdef sTLTObj < handle
                 st = obj.nodeList{leafNodes(i)}.stlFormula;
                 pred_st = regexprep(st, '\s+|not|\(|\)', '');
                 region = predMap(pred_st);
-                if strcmp(region.rep,'circular')
-                    if mod(numel(regexp(st,'\<not\>','match')),2)
-                        region.obstacle = ~region.obstacle;
+                % check for obstacle region
+                % here we treat the cases 'mu1','not mu1','not not mu1'
+                % since we assumed positive normal form (PNF)
+                if mod(numel(regexp(st,'\<not\>','match')),2)
+                    % when it is an obstacle region like 'not mu1', 'not not not mu1'
+                    region.obstacle = ~region.obstacle;
+                    if strcmp(region.rep,'grid-data')
+                        region.data = - region.data;
                     end
                 end
                 obj.nodeList{leafNodes(i)}.region = region;
