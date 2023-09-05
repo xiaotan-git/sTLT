@@ -1,5 +1,4 @@
-% clear all; close all;
-case_numb = 2;
+%  clear all; close all;
 dyn_model_name = 'singleIntegrator'; % 'singleIntegrator' or 'unicycle'
 switch case_numb
     case 1
@@ -12,12 +11,17 @@ end
 disp(['Now running the case ' num2str(case_numb) ...
     ' of the model ' dyn_model_name])
 
-
+% reset time domain for next simulation
+if exist('cbf_cell','var')
+    for i = 1:numel(cbf_cell)
+        cbf_cell{i} = cbf_cell{i}.resetTimeDomain;
+    end
+end 
 %alpha = [10 1 1 0.8 10 10 1 0.6];
 % [1 1 1 1 10 10 1 1] 
 % alpha = [10 1 1 1 10 10 1 1]; 
 % alpha = [10 1 10 1 10 10 10 1]; % works for case 1
-alpha = [1 10 1 1 1 1 10 1 1]; % works for case 2_1
+alpha = [1 10 1 1 1 1 1 100 1]; % works for case 2_1
 
 %% dynamics related parameters
 if strcmp(dyn_model_name,'singleIntegrator')
@@ -32,10 +36,10 @@ if strcmp(dyn_model_name,'singleIntegrator')
 %     x0 = [-2; 3.5]; % [-6; 2] or [-2; 3.5] or [-1.7; 0.5] or [-20; -5];
     
     % case 2
-    x0 = [-1.7; 0.5]; % [-2; 3.5] or [-1.7; 0.5]
+    x0 = [-2; 3.5]; % [-2; 3.5] or [-1.7; 0.5]
     
     
-    gain_nom = 0.1;
+    gain_nom = 1;
 end
 if strcmp(dyn_model_name,'unicycle')
     dyn.f = @(x,t) [0;0;0]; 
@@ -45,7 +49,11 @@ if strcmp(dyn_model_name,'unicycle')
     wMax = 1; vMax = 1;
     lb = -[vMax;wMax]; up = [vMax;wMax];
 
+    % case 1
     x0 =[-2; 3.5;pi/2]; % [-2; 3.5;pi/2] or [-6;2;0]
+
+    % case 2
+    x0 = [-1.7; 0.5;0]; % [-2; 3.5;pi/2] or [-1.7; 0.5;0]
     gain_nom = 0.01; % a tuning parameter
 end
 
@@ -237,7 +245,7 @@ for iter = 1:total_iter-1
     end
         
     % hard saturation
-    lb = -1.0*ones(size_input,1); up = 1.0*ones(size_input,1);
+    lb = -1.2*ones(size_input,1); up = 1.2*ones(size_input,1);
     if ~(all(u>=lb) && all(u<=up))
         u = sat_func(u,lb,up); 
         % disp('u from QP not feasible. Saturation operation is done at time')
@@ -317,8 +325,8 @@ title("barriers(t)")
 
 %% plot the figures in the paper
 % data logging
-% x_vec_cell = {};
-% x_vec_cell{end+1} = x_vec;
+x_vec_cell = {};
+x_vec_cell{end+1} = x_vec;
 
 % to plot with a time-varying color
 figure
@@ -405,15 +413,15 @@ if case_numb == 2
     delete(findall(gcf,'type','annotation'))
     set(gcf,'Units','normalized');
     [xf1,yf1] = axescoord2figurecoord([X1.c(1)-0.2;X1.c(1)+0.2],[X1.c(2)-0.2;X1.c(2)+0.2]);
-    annotation('textbox',[xf1(1)-0.02 yf1(1) xf1(2)-xf1(1) yf1(2)-yf1(1)],'interpreter','latex','String','$S_{\mu_1}$','EdgeColor','None','fontsize',16)
+    annotation('textbox',[xf1(1)-0.07 yf1(1) xf1(2)-xf1(1) yf1(2)-yf1(1)],'interpreter','latex','String','$S_{\mu_1}$','EdgeColor','None','fontsize',16)
     [xf2,yf2] = axescoord2figurecoord([X2.c(1)-0.2;X2.c(1)+0.2],[X2.c(2)-0.2;X2.c(2)+0.2]);
     annotation('textbox',[xf2(1) yf2(1) xf2(2)-xf2(1) yf2(2)-yf2(1)],'interpreter','latex','String','$S_{\mu_2}$','EdgeColor','None','fontsize',16)
     [xf3,yf3] = axescoord2figurecoord([X3.c(1)-0.15;X3.c(1)+0.2],[X3.c(2)-0.2;X3.c(2)+0.2]);
-    annotation('textbox',[xf3(1)-0.11 yf3(1) xf3(2)-xf3(1) yf3(2)-yf3(1)],'interpreter','latex','String','$S_{\mu_3}$','EdgeColor','None','fontsize',16)
+    annotation('textbox',[xf3(1)+0.05 yf3(1)-0.05 xf3(2)-xf3(1) yf3(2)-yf3(1)],'interpreter','latex','String','$S_{\mu_3}$','EdgeColor','None','fontsize',16)
     [xf4,yf4] = axescoord2figurecoord([X4.c(1)-0.2;X4.c(1)+0.2],[X4.c(2)-0.2;X4.c(2)+0.2]);
     annotation('textbox',[xf4(1) yf4(1) xf4(2)-xf4(1) yf4(2)-yf4(1)],'interpreter','latex','String','$S_{\mu_4}$','EdgeColor','None','fontsize',16)
     [xf5,yf5] = axescoord2figurecoord([Square5.c(1)-0.2;Square5.c(1)+0.2],[Square5.c(2)-0.2;Square5.c(2)+0.2]);
-    annotation('textbox',[xf5(1) yf5(1) xf5(2)-xf5(1) yf5(2)-yf5(1)],'interpreter','latex','String','$S_{\mu_5}$','EdgeColor','None','fontsize',16)
+    annotation('textbox',[xf5(1)-0.03 yf5(1)+0.04 xf5(2)-xf5(1) yf5(2)-yf5(1)],'interpreter','latex','String','$S_{\mu_5}$','EdgeColor','None','fontsize',16)
 end
 
 % to plot with explicit time-stamps
@@ -441,7 +449,7 @@ for i = 1:numel(x_vec_cell)
     end
 end
 
-for i = 1:2
+for i = 1:min(numel(x_vec_cell),2)
     x_vec = x_vec_cell{i};
     text(x_vec(1,1)+0.05,x_vec(2,1),'0s',...
         'VerticalAlignment','middle',...                
