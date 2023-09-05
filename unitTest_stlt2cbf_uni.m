@@ -2,7 +2,7 @@ switch case_numb
     case 1
         load('tree_unicycle_example1.mat');
     case 2
-        load('tree_unicycle_example2.mat');
+        load('tree_unicylce_example2.mat');
 end
 
 % define dynamics again
@@ -37,7 +37,7 @@ for i = 1:numel(temporalFragments)
     ts_Interval_PA = pa_setNode.startTimeInterval;
 
     % time interval from Sec. III.D 2)
-    tb_interval = [min(ts_Interval(2),ts_Interval_PA(2)+pa_setNode.setNodeDuration),...
+    tb_interval = [min(ts_Interval(1),ts_Interval_PA(2)+pa_setNode.setNodeDuration),...
         ts_Interval(2)+setNode.setNodeDuration ];
 
     % time interval for cbf builder [tb_low, tset_upp, tb_upp]??
