@@ -1,4 +1,4 @@
-function [grid,data] = build_unicycleCBF_helper_cylinder(grid_min,grid_max,center,radius)
+function [grid,data] = build_unicycleCBF_helper_rectangle(grid_min,grid_max,center,radius)
 %BUILD_UNICYCLECBF_HELPER Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -12,9 +12,11 @@ grid = createGrid(grid_min, grid_max, N, pdDims);
 
 
 % target set
-% data0 = shapeCylinder(grid,ignoreDims,center,radius)
+% data = shapeRectangleByCenter(grid, center, widths)
 % CBF construction for the set X = {x: data0(x)>=0} 
-data0 = -shapeCylinder(grid, 3, center, radius);
+center = [center;0]; % 3d
+widths = [radius;radius;inf]; % 3d
+data0 = -shapeRectangleByCenter(grid, center, widths);
 
 data = data0;
 end
