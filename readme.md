@@ -37,9 +37,8 @@ For single integrator dynamics, only circular regions are considered as regions 
 
 `obj = singleIntegratorCBF(timeInterval,c,r,vMax,obs)`
 
-The `obs` flag is needed only if the circular region is an obstacle. `timeInterval ` is  
+The `obs` flag is needed only if the circular region is an obstacle. `timeInterval ` is  ![time interval](./docs/timeInterval_equation.svg)
 
-$$[\underline{t}_{b_i}, \bar{t}_s(X_{f_i}), \bar{t}_{b_i}]$$
 
  for a temporal fragment. `c` and `r` are the center and radius of the circular region, and `vMax` is the velocity bound. 
 
