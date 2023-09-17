@@ -33,16 +33,13 @@ A sTLT tree is simply constructed from a list of node objects and their parentag
 ![sTLT tree](./docs/sTLT_tree.jpg)
 
 ## CBF synthesis
-For single integrator dynamics, only circular regions are considered as regions of interest. 
+- For single integrator dynamics, only circular regions are considered as regions of interest. 
 
 `obj = singleIntegratorCBF(timeInterval,c,r,vMax,obs)`
 
-The `obs` flag is needed only if the circular region is an obstacle. `timeInterval ` is  ![time interval](./docs/timeInterval_equation.svg)
+The `obs` flag is needed only if the circular region is an obstacle. `timeInterval ` is  ![time interval](./docs/timeInterval_equation.svg)  for a temporal fragment. `c` and `r` are the center and radius of the circular region, and `vMax` is the velocity bound. 
 
-
- for a temporal fragment. `c` and `r` are the center and radius of the circular region, and `vMax` is the velocity bound. 
-
-For unicycle models, the procedure is to first construct the set (represented by a grid and a super-level set from the data). This step is done by conducting the reachability analysis. Then
+- For unicycle models, the procedure is to first construct the set (represented by a grid and a super-level set from the data). This step is done by conducting the reachability analysis. Then
 
  `uniCBF = unicycleCBF(timeInterval,grid,data0,vRange,wMax)`
  
