@@ -37,7 +37,11 @@ For single integrator dynamics, only circular regions are considered as regions 
 
 `obj = singleIntegratorCBF(timeInterval,c,r,vMax,obs)`
 
-The `obs` flag is needed only if the circular region is an obstacle. `timeInterval ` is  $$[\underline{t}_{\mathfrak{b}_i}, \bar{t}_s(\mathbb{X}_{f_i}), \bar{t}_{\mathfrak{{b}_i}}]$$ for a temporal fragment. `c` and `r` are the center and radius of the circular region, and `vMax` is the velocity bound. 
+The `obs` flag is needed only if the circular region is an obstacle. `timeInterval ` is  
+
+$$[\underline{t}_{\mathfrak{b}_i}, \bar{t}_s(\mathbb{X}_{f_i}), \bar{t}_{\mathfrak{{b}_i}}]$$
+
+ for a temporal fragment. `c` and `r` are the center and radius of the circular region, and `vMax` is the velocity bound. 
 
 For unicycle models, the procedure is to first construct the set (represented by a grid and a super-level set from the data). This step is done by conducting the reachability analysis. Then
 
