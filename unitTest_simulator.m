@@ -337,7 +337,7 @@ for i = 1: size(x_vec_cell,2)
 end
 colorbar('Ticks',[0,5,10,15,20],...
          'TickLabels',{'0s','5s','10s','15s','20s'})
-colormap('turbo')
+% colormap('turbo')
 
 
 

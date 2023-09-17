@@ -29,8 +29,9 @@ for i = 1:numel(temporalFragments)
     operatorNode = tree.nodeList{temporalFragments{i}(1)};
     setNode = tree.nodeList{temporalFragments{i}(2)};
     ts_Interval = setNode.startTimeInterval;
+    % run algorithm 3 if not done before
     if isempty(ts_Interval)
-        tree.tree.calStartTimeInterval();
+        tree.calStartTimeInterval();
     end
     pa_setNodeIndex = tree.parentList{tree.parentList{temporalFragments{i}(2)}};
     pa_setNode = tree.nodeList{pa_setNodeIndex};
