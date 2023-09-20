@@ -1,7 +1,7 @@
 clc; clear all;close all;
 
 case_numb = 2;
-sys_dyn = 'unicycle';
+dyn_model_name = 'unicycle';
 vRange = [-1 1];
 wMax = 1;
 use_valueFunction = true;
