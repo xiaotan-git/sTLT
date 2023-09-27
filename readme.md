@@ -1,5 +1,5 @@
 # sTLT toolkit
-This is the accompanying code for the paper *Continuous-time control synthesis under nested signal temporal logic specifications*  by Pian Yu, Xiao Tan, and Dimos V. Dimarogonas. This code automatically constructs the sTLT tree structure and calculate the set nodes, start time intervals, etc. It also provides automatic synthesis of corresponding CBFs from a given sTLT. 
+This is the accompanying code for the paper [Continuous-time control synthesis under nested signal temporal logic specifications](https://arxiv.org/abs/2309.14347)  by Pian Yu, Xiao Tan, and Dimos V. Dimarogonas. This code automatically constructs the sTLT tree structure and calculate the set nodes, start time intervals, etc. It also provides automatic synthesis of corresponding CBFs from a given sTLT. 
 
 # How to run
 You need to install [helperOC](https://github.com/HJReachability/helperOC) for the HJB reachability analysis in the unicycle case. After that, add `\utility_func` and `\src` to Matlab path.
